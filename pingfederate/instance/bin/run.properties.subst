@@ -356,3 +356,6 @@ org.apache.xml.security.ignoreLineBreaks=true
 #com.unboundid.ldap.sdk.debug.enabled=true
 #com.unboundid.ldap.sdk.debug.level=FINEST
 #com.unboundid.ldap.sdk.debug.type=LDAP
+
+# PF 10.1 Beta support
+com.pingidentity.tapestry.services.CustomHomeService=ReactHome
