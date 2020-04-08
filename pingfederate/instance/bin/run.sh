@@ -145,7 +145,7 @@ JAVA_OPTS="${JAVA_OPTS} ${JVM_MEMORY_OPTS}"
 
 # Setup PingFederate specific properties
 JAVA_OPTS="${JAVA_OPTS} -Dprogram.name=${PROGNAME}"
-JAVA_OPTS="$JAVA_OPTS -Djavax.net.debug=ssl"
+# JAVA_OPTS="$JAVA_OPTS -Djavax.net.debug=ssl"
 
 RANDOM_SOURCE="-Djava.security.egd=file:/dev/./urandom"
 JAVA_OPTS="${JAVA_OPTS} ${RANDOM_SOURCE}"
