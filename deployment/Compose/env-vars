@@ -21,3 +21,24 @@ PING_CENTRAL_OIDC_ENABLED=true
 PING_CENTRAL_CLIENT_ID=PingCentral
 PING_CENTRAL_CLIENT_SECRET=2FederateM0re
 PF_ISSUER={{Your PF Issuer}}
+
+# BaseURL of the PingFed service - Used in the PD Email Notification
+PF_BASE_URL=https://taruncustomer360.ping-eng.com
+
+# Delegated Admin app CORS 
+# DELEGATOR_CORS_URL=https://{{Your Host}}
+
+# PF details for the Delegated Admin OIDC app
+# PF_HOST && PF_PORT are used to construct the allowed `Issuer` of the id_token
+# Delegator will prepend "https://", you only need the port if if it's not `:443`
+# If you are **NOT** using PingAccess - uncomment the PF_PORT to match the proper port for PingFed
+PF_HOST=taruncustomer360.ping-eng.com
+# PF_PORT=9031
+PF_CLIENT_ID=Delegator
+
+# PD details for Delegator API calls
+PD_HOST=taruncustomer360.ping-eng.com
+PD_PORT=443
+
+# Base Hostname of the PingFed service being used for Delegated Admin
+PF_BASE_HOST=taruncustomer360.ping-eng.com

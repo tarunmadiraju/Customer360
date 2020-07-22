@@ -17,18 +17,8 @@
 			"enabled": true
 		},
 		{
-			"key": "delegatorHost",
-			"value": "taruncustomer360.ping-eng.com",
-			"enabled": true
-		},
-		{
-			"key": "paVirtualHost",
-			"value": "taruncustomer360.ping-eng.com",
-			"enabled": true
-		},
-		{
 			"key": "pingCentralHost",
-			"value": "taruncustomer360.ping-eng.com",
+			"value": "https://taruncustomer360.ping-eng.com",
 			"enabled": true
 		},
 		{       "key": "googleAppID",

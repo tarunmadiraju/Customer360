@@ -5,8 +5,9 @@ services:
     image: pingidentity/pingfederate:edge
     command: wait-for pingdirectory:389 -t 600 -- entrypoint.sh start-server
     env_file:
-      - /home/ubuntu/projects/devops/customer360/deployment/Compose/env-vars
-      - ~/.pingidentity/devops  
+      - ./env-vars
+    secrets:
+      - devops-secret
     environment:
     - SERVER_PROFILE_URL=https://github.com/tarunmadiraju/Customer360.git
     - SERVER_PROFILE_PATH=pingfederate
@@ -20,8 +21,9 @@ services:
   pingdirectory:
     image: pingidentity/pingdirectory:latest
     env_file:
-      - /home/ubuntu/projects/devops/customer360/deployment/Compose/env-vars
-      - ~/.pingidentity/devops  
+      - ./env-vars
+    secrets:
+      - devops-secret
     environment:
     - SERVER_PROFILE_URL=https://github.com/tarunmadiraju/Customer360.git
     - SERVER_PROFILE_PATH=pingdirectory
@@ -40,8 +42,9 @@ services:
       - SERVER_PROFILE_URL=https://github.com/tarunmadiraju/Customer360.git
       - SERVER_PROFILE_PATH=pingdatasync
     env_file:
-      - /home/ubuntu/projects/devops/customer360/deployment/Compose/env-vars   
-      - ~/.pingidentity/devops  
+      - ./env-vars   
+    secrets:
+      - devops-secret
     #volumes:
     #   - ${HOME}/projects/devops/volumes/simple-sync.pingdatasync:/opt/out
     ulimits:
@@ -65,27 +68,10 @@ services:
     image: pricecs/pingconfigurator
     environment:
       # Collections: Solution - Customer360
-      - COLLECTIONS=https://www.getpostman.com/collections/344bbc13f4ccd4ebc5f5,https://www.getpostman.com/collections/eaa397bd3a35ef3095c1,https://www.getpostman.com/collections/eb7dc32b6d429fd7bcd2
+      - COLLECTIONS=https://www.getpostman.com/collections/344bbc13f4ccd4ebc5f5
     volumes: 
       # An environment file should be injected into the image - this file should contain your specfic info and secrets
       - ./postman_vars.json:/usr/src/app/postman_vars.json  
-
-  pingaccess:
-    image: pingidentity/pingaccess:latest
-    env_file: 
-     - /home/ubuntu/projects/devops/customer360/deployment/Compose/env-vars
-     - ~/.pingidentity/devops 
-    ports:
-     - 80:8080
-     - 443:3000
-     - 9000:9000
-
-  pingdelegator:
-    image: pricecs/pingdelegator:4.0
-    env_file:
-      - /home/ubuntu/projects/devops/customer360/deployment/Compose/env-vars
-    ports:
-      - 8088:80      
 
   pingcentral:
     image: pingidentity/pingcentral:latest
@@ -94,8 +80,9 @@ services:
       - SERVER_PROFILE_URL=https://github.com/tarunmadiraju/Customer360.git
       - SERVER_PROFILE_PATH=pingcentral/external-mysql-db
     env_file:
-      - /home/ubuntu/projects/devops/customer360/deployment/Compose/env-vars
-      - ~/.pingidentity/devops  
+      - ./env-vars
+    secrets:
+      - devops-secret
     ports:
       - "9022:9022"
     depends_on:
@@ -108,7 +95,7 @@ services:
       MYSQL_ROOT_PASSWORD: 2Federate
     ports:
       - "3306:3306"
-  
-  smtp:
-    image: bytemark/smtp
-    restart: always
+
+secrets:
+  devops-secret:
+    file: ${HOME}/.pingidentity/devops
