@@ -1,0 +1,8 @@
+# Exported by PingData Administrative Console Jul/22/2020 14:14:01
+objectClass: top
+objectClass: ldapSubentry
+objectClass: subschema
+cn: schema
+objectClasses: ( fireeyePerson-OID NAME 'fireeyePerson' SUP inetOrgPerson
+  STRUCTURAL MAY ( feCustomerName $ feCustomerNumber $ fePermissions )
+  X-SCHEMA-FILE '99-user.ldif' )
